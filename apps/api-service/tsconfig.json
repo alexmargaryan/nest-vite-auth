@@ -1,0 +1,12 @@
+{
+  "extends": "@nest-vite-auth/typescript-config/node.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "declaration": false,
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
