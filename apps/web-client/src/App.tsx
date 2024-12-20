@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useEffect } from "react";
 
 import { Button } from "./components/ui/button";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const handleLogIn = async () => {
+    window.location.href = "http://localhost:3000/api/auth/google/login";
+  };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+
+    if (token) {
+      localStorage.setItem("NEST_VITE_AUTH_ACCESS_TOKEN", token);
+
+      window.location.href = "/";
+    }
+  }, []);
 
   return (
     <>
-      <h1>Count: {count}</h1>
-      <Button onClick={() => setCount((count) => count + 1)}>Set Count</Button>
+      <p>Login with Google</p>
+      <Button onClick={() => handleLogIn()}>Log In</Button>
     </>
   );
 }
